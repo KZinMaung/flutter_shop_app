@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants.dart';
+import 'package:shop_app/components/no_account_text.dart';
 import 'package:shop_app/screens/sign_in/components/sign_form.dart';
 import 'package:shop_app/size_config.dart';
 
@@ -52,18 +52,7 @@ class Body extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: getProportionateScreenHeight(20),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Don't have an account?",
-                    style: TextStyle(fontSize:getProportionateScreenWidth(16)),
-                    ),
-                    Text("Sign Up",
-                    style: TextStyle(fontSize: getProportionateScreenWidth(16),color: kPrimaryColor),
-                    )
-                    
-                  ],
-                )
+                NoAccountText()
               ],
             ),
           ),
@@ -72,5 +61,7 @@ class Body extends StatelessWidget {
     );
   }
 }
+
+
 
 

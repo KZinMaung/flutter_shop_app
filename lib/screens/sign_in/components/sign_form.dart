@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 
 import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
@@ -61,7 +62,11 @@ class _SignFormState extends State<SignForm> {
               activeColor: kPrimaryColor,),
               Text("Remember me"),
               Spacer(),
-              Text("Forgot Password",style: TextStyle(decoration: TextDecoration.underline),),
+              GestureDetector(
+                onTap: () {
+                  Navigator.popAndPushNamed(context, ForgotPasswordScreen.routeName);
+                },
+                child: Text("Forgot Password",style: TextStyle(decoration: TextDecoration.underline),)),
             ],
           ),
           SizedBox(height: getProportionateScreenHeight(20),),
@@ -139,6 +144,7 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
+      onSaved: (newValue) => email = newValue,
     );
   }
  
