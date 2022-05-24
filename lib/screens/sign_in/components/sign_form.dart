@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
+import 'package:shop_app/screens/login_success/login_success_screen.dart';
 
 import '../../../components/custom_suffix_icon.dart';
 import '../../../components/default_button.dart';
@@ -79,10 +80,11 @@ class _SignFormState extends State<SignForm> {
               press: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
+                  //if correct credential, go to login success screen
+                  Navigator.pushNamed(context, LoginSuccessScreen.routeName);
                 }
               },
               text: "Continue"),
-          
           
         ],
       ),
@@ -102,8 +104,10 @@ class _SignFormState extends State<SignForm> {
       validator: (value) {
         if (value!.isEmpty) {
           addError(kPassNullError);
+          return "";
         } else if (value.length < 8) {
           addError(kShortPassError);
+          return "";
         }
         return null;
       },
@@ -131,16 +135,22 @@ class _SignFormState extends State<SignForm> {
       validator: (value) {
         if (value!.isEmpty) {
           addError(kEmailNullError);
+          return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
           addError(kInvalidEmailError);
+          return "";
         }
         return null;
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(kEmailNullError);
+          return null;
+
+         
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(kInvalidEmailError);
+          return null;
         }
         return null;
       },
